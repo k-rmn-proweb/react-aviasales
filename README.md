@@ -1,2 +1,2 @@
 # react-aviasales
-Тестовое задание Aviasales
+Тестовое задание Avia Sales
