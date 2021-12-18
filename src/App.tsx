@@ -1,9 +1,9 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {Filter, Header, Sort, Tickets} from './components';
+import {Filter, Header, Sidebar, Sort, Tickets} from './components';
 import {TicketsAPI} from './api/ticketsAPI';
 import {ITicketModel} from './models/ticket.model';
 import {SortEnum} from './components/Sort';
-import './scss/index.scss';
+import './App.scss';
 
 export interface IFilterProps {
   stops: string[];
@@ -14,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [tickets, setTickets] = useState<ITicketModel[]>([]);
   const [filter, setFilter]   = useState<IFilterProps>({stops: ['all'], sort: SortEnum.PRICE});
+  const [drawer, setDrawer]   = useState<boolean>(false);
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -82,12 +83,12 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header toggleDrawer={setDrawer} filter={filter} setFilter={setFilter} />
       <div className="container">
         <main className="main">
-          <div className="sidebar">
+          <Sidebar isOpen={drawer} toggleDrawer={setDrawer}>
             <Filter filter={filter} setFilter={setFilter} />
-          </div>
+          </Sidebar>
           <div className="content">
             <Sort filter={filter} setFilter={setFilter} />
             {loading ? <h3>Loading...</h3> : (

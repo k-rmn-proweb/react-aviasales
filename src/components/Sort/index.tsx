@@ -1,5 +1,7 @@
 import React from 'react';
 import {IFilterProps} from '../../App';
+import {ToggleButton, ToggleButtonGroup} from '@mui/material';
+import './styles.scss';
 
 export enum SortEnum {
   PRICE = 'price',
@@ -13,29 +15,16 @@ interface ISortProps {
 }
 
 const Sort: React.FC<ISortProps> = ({ filter, setFilter }) => {
+  const handleChange = (e: React.MouseEvent, sort: SortEnum) => {
+    setFilter({...filter, sort})
+  }
   return (
     <div className="sort">
-      <button
-        onClick={() => setFilter({...filter, sort: SortEnum.PRICE})}
-        type="button"
-        className={`sort__button ${filter.sort === SortEnum.PRICE ? 'sort__button--active' : ''}`}
-      >
-        Самый дешевый
-      </button>
-      <button
-        onClick={() => setFilter({...filter, sort: SortEnum.DURATION})}
-        type="button"
-        className={`sort__button ${filter.sort === SortEnum.DURATION ? 'sort__button--active' : ''}`}
-      >
-        Самый быстрый
-      </button>
-      <button
-        onClick={() => setFilter({...filter, sort: SortEnum.OPTIMAL})}
-        type="button"
-        className={`sort__button ${filter.sort === SortEnum.OPTIMAL ? 'sort__button--active' : ''}`}
-      >
-        Оптимальный
-      </button>
+      <ToggleButtonGroup exclusive value={filter.sort} color={'primary'} size={'small'} fullWidth onChange={handleChange}>
+        <ToggleButton value={SortEnum.PRICE}>Самый дешевый</ToggleButton>
+        <ToggleButton value={SortEnum.DURATION}>Самый быстрый</ToggleButton>
+        <ToggleButton value={SortEnum.OPTIMAL}>Оптимальный</ToggleButton>
+      </ToggleButtonGroup>
     </div>
   );
 };
