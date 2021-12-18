@@ -1,40 +1,11 @@
-@import "../../scss/variables";
+@use "../../scss" as *;
 
 .sort {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  &__button {
-    border: 1px solid #DFE5EC;
-    outline: none;
-    user-select: none;
-    background: #FFF;
-    display: flex;
-    flex: 0 0 33.333333%;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    height: 48px;
-    transition: all 0.3s ease-in-out 0s;
-    font-weight: 600;
-    text-transform: uppercase;
-    color: $text-color;
-    &:first-child {
-      border-radius: 5px 0 0 5px;
-    }
-    &:last-child {
-      border-radius: 0 5px 5px 0;
-    }
-    &:not(:first-child) {
-      border-left: none;
-    }
-    &:hover, &--active {
-      background-color: $primary-color;
-      border-color: $primary-color;
-      color: #FFF;
-    }
+  @include mobile {
+    display: none;
   }
 }

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Ticket from './Ticket';
 import {ITicketModel} from '../../models/ticket.model';
+import './styles.scss';
 
 interface ITicketsProps {
   tickets: ITicketModel[];

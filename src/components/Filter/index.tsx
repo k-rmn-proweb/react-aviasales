@@ -1,6 +1,7 @@
 import React from 'react';
 import Item from './Item';
 import {IFilterProps} from '../../App';
+import './styles.scss';
 
 interface IFilter {
   filter: IFilterProps;
